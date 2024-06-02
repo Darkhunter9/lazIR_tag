@@ -20,7 +20,7 @@ Refer to `CmakeLists.txt`.
 ## Cross-compile for Raspberry Pi Zero
 ```bash
 cd src/raft_grpc
-env GOOS=linux GOARCH=arm64 GOARM=6 go build -o raft_grpc
+env GOOS=linux GOARCH=arm GOARM=6 go build -o raft_grpc
 ```
 
 ## Start a raft cluster
