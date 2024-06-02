@@ -6,7 +6,8 @@ package main
 // #include <string.h>
 // #include <time.h>
 // #include <unistd.h>
-// #include "test_signal.h"
+// #include <wiringPi.h>
+// #include "main.h"
 import "C"
 
 import (
@@ -73,7 +74,6 @@ func getRecord(c *pb.ScoreClient) (map[string]int32, error) {
 	return res.Score, nil
 }
 
-// TODO: how to dynamically decide user id, and how to recover from errors?
 func main() {
 	dns := "multi:///localhost:50051,localhost:50052,localhost:50053"
 	user := "pi1"
@@ -87,16 +87,12 @@ func main() {
 	defer C.free(unsafe.Pointer(ptr))
 
 	for {
-		// check if user is shot
-		size := C.loop_function((*C.char)(ptr))
-		str := string(C.GoBytes(ptr, size))
+		str := string(C.GoBytes(unsafe.Pointer(C.mainC()), 3))
 		fmt.Println("received: ", str)
 
-		if size == 3 { // check if str is "pix"
-			errAddRecord := addRecord(c, str, user)
-			if errAddRecord != nil {
-				log.Fatal("error calling addRecord")
-			}
+		errAddRecord := addRecord(c, str, user)
+		if errAddRecord != nil {
+			log.Fatal("error calling addRecord")
 		}
 
 		// check if user is dead
