@@ -80,18 +80,18 @@ unsigned convert(struct readings *r, unsigned n) {
 }
 
 // Function to print the readings
-static void print_readings(struct readings *r, int n) {
-    assert(n);
-    printf("-------------------------------------------------------\n");
-    for (int i = 0; i < n; i++) {
-        printf("\t%d: %d = %d usec\n", i, r[i].v, r[i].usec);
-    }
-    printf("readings=%d\n", n);
-    if (!is_header(r, n))
-        printf("NOISE\n");
-    else
-        printf("convert=%x\n", convert(r, n));
-}
+// static void print_readings(struct readings *r, int n) {
+//     assert(n);
+//     printf("-------------------------------------------------------\n");
+//     for (int i = 0; i < n; i++) {
+//         printf("\t%d: %d = %d usec\n", i, r[i].v, r[i].usec);
+//     }
+//     printf("readings=%d\n", n);
+//     if (!is_header(r, n))
+//         printf("NOISE\n");
+//     else
+//         printf("convert=%x\n", convert(r, n));
+// }
 
 const char *key_to_str(unsigned x) {
     switch (x) {
