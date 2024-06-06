@@ -1,21 +1,26 @@
 defaults: &defaults
   address: localhost
   port: 5001
-  raftId: node_name1
+  raftId: pi1
   raftDir: data
   raftBootstrap: false
   life: 100
   players:
-    - node_name1
-    - node_name2
-    - node_name3
-    - node_name4
+    - pi1
+    - pi2
+    - pi3
+    - pi4
+  addressPool:
+    - 192.168.8.160:5001
+    - 192.168.8.167:5001
+    - 192.168.8.103:5001
+    - 192.168.8.151:5001
 
 <<: *defaults
 # uncomment to overwrite defaults
 # address:
 # port:
-raftId: node_name2
+raftId: pi3
 # raftDir:
 # raftBootstrap:
 # life:

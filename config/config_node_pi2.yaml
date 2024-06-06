@@ -20,8 +20,8 @@ defaults: &defaults
 # uncomment to overwrite defaults
 # address:
 # port:
-# raftId:
+raftId: pi2
 # raftDir:
-raftBootstrap: true
+# raftBootstrap:
 # life:
 # players:
